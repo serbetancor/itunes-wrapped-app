@@ -1,18 +1,26 @@
 <script setup lang="ts">
-import library from '@/../../parser/data/current/Formatted_Biblioteca.json'
-import { ref, computed } from 'vue'
+import { ref, computed, onMounted } from 'vue'
 
-import type { Song } from '@/models/itunes'
+import type { Song, SongsResponse } from '@/models/itunes'
 
+import { useiTunesApi } from '@/apis/use-itunes-api'
 import ArrowIcon from '@/assets/arrow.svg'
 import NoImageIcon from '@/assets/no-image.svg'
 import { formatMilliseconds } from '@/utils/itunes'
 
-const songs = ref<Song[]>(library.data)
+const songsLibrary = ref<SongsResponse>({ data: [] })
+const songs = computed<Song[]>(() => songsLibrary.value.data)
+
 const topCount = ref<number>(20)
 
 const shownSongs = computed(() => songs.value.slice(0, topCount.value))
 
+onMounted(async () => {
+  const response = await useiTunesApi().getSongs()
+  if (response.data.value) {
+    songsLibrary.value = response.data.value
+  }
+})
 /*
 const tooltip = ref<{ x: number; y: number; text: string; visible: boolean }>({
   text: '',

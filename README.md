@@ -1,28 +1,39 @@
-# iTunes Wrapped
+# itunes-wrapped-front
 
-This repository provides a Python-based tool for organizing and processing a personal music library exported from iTunes. It takes the raw JSON data from iTunes, formats it, and generates structured JSON outputs for easier access and integration with front-end applications.
+This template should help get you started developing with Vue 3 in Vite.
 
-## Features
+## Recommended IDE Setup
 
-- **Parsing and Formatting**: Converts the original iTunes library JSON into a more manageable and structured format.
-- **Data Grouping and Sorting**: Organizes data based on various attributes such as play count, time played, album, artist, genre, and more.
-- **Unique Identifiers**: Generates unique UUIDs for albums and genres to ensure consistency and reliability in data handling.
-- **Custom Outputs**: Generates output files sorted by time played, play count, album, genre, and artist.
-- **Flexible Integration**: Outputs are designed for easy integration with front-end applications, making it ideal for data visualization or music recommendation systems.
+[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
 
-## Supported Data
+## Type Support for `.vue` Imports in TS
 
-The tool works with the following key attributes extracted from your iTunes library:
+TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) to make the TypeScript language service aware of `.vue` types.
 
-- **Track ID**
-- **Name**
-- **Artist**
-- **Album Artist**
-- **Album**
-- **Genre**
-- **Year**
-- **Duration**
-- **Play Count**
-- **Time Played**
+## Customize configuration
 
-The data can be grouped by various attributes, including album, genre, and artist, to provide deeper insights into your music library.
+See [Vite Configuration Reference](https://vite.dev/config/).
+
+## Project Setup
+
+```sh
+npm install
+```
+
+### Compile and Hot-Reload for Development
+
+```sh
+npm run dev
+```
+
+### Type-Check, Compile and Minify for Production
+
+```sh
+npm run build
+```
+
+### Lint with [ESLint](https://eslint.org/)
+
+```sh
+npm run lint
+```
