@@ -1,24 +1,21 @@
 <script setup lang="ts">
+import { storeToRefs } from 'pinia'
 import { ref, computed, onMounted } from 'vue'
 
-import type { Genre, GenresResponse } from '@/models/itunes'
-
-import { useiTunesApi } from '@/apis/use-itunes-api'
 import ArrowIcon from '@/assets/arrow.svg'
+import { useiTunesStore } from '@/stores/useiTunesStore'
 import { formatMilliseconds } from '@/utils/itunes'
 
-const genresLibrary = ref<GenresResponse>({ data: [] })
-const genres = computed<Genre[]>(() => genresLibrary.value.data)
+const store = useiTunesStore()
 
 const topCount = ref<number>(15)
 
+const { genresLibrary } = storeToRefs(store)
+const genres = computed(() => genresLibrary.value.data)
 const shownGenres = computed(() => genres.value.slice(0, topCount.value))
 
 onMounted(async () => {
-  const response = await useiTunesApi().getGenres()
-  if (response.data.value) {
-    genresLibrary.value = response.data.value
-  }
+  await store.fetchGenres()
 })
 </script>
 
