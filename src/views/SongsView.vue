@@ -1,25 +1,22 @@
 <script setup lang="ts">
+import { storeToRefs } from 'pinia'
 import { ref, computed, onMounted } from 'vue'
 
-import type { Song, SongsResponse } from '@/models/itunes'
-
-import { useiTunesApi } from '@/apis/use-itunes-api'
 import ArrowIcon from '@/assets/arrow.svg'
 import NoImageIcon from '@/assets/no-image.svg'
+import { useiTunesStore } from '@/stores/useiTunesStore'
 import { formatMilliseconds } from '@/utils/itunes'
 
-const songsLibrary = ref<SongsResponse>({ data: [] })
-const songs = computed<Song[]>(() => songsLibrary.value.data)
+const store = useiTunesStore()
 
 const topCount = ref<number>(20)
 
+const { songsLibrary } = storeToRefs(store)
+const songs = computed(() => songsLibrary.value.data)
 const shownSongs = computed(() => songs.value.slice(0, topCount.value))
 
 onMounted(async () => {
-  const response = await useiTunesApi().getSongs()
-  if (response.data.value) {
-    songsLibrary.value = response.data.value
-  }
+  await store.fetchSongs()
 })
 /*
 const tooltip = ref<{ x: number; y: number; text: string; visible: boolean }>({
