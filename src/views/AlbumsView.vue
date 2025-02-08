@@ -1,17 +1,26 @@
 <script setup lang="ts">
-import library from '@/../../parser/data/current/Formatted_Biblioteca_byAlbum.json'
-import { ref, computed } from 'vue'
+import { ref, computed, onMounted } from 'vue'
 
-import type { Album } from '@/models/itunes'
+import type { Album, AlbumsResponse } from '@/models/itunes'
 
+import { useiTunesApi } from '@/apis/use-itunes-api'
 import ArrowIcon from '@/assets/arrow.svg'
 import NoImageIcon from '@/assets/no-image.svg'
 import { formatMilliseconds } from '@/utils/itunes'
 
-const albums = ref<Album[]>(library.data)
+const albumsLibrary = ref<AlbumsResponse>({ data: [] })
+const albums = computed<Album[]>(() => albumsLibrary.value.data)
+
 const topCount = ref<number>(20)
 
 const shownAlbums = computed(() => albums.value.slice(0, topCount.value))
+
+onMounted(async () => {
+  const response = await useiTunesApi().getAlbums()
+  if (response.data.value) {
+    albumsLibrary.value = response.data.value
+  }
+})
 </script>
 
 <template>

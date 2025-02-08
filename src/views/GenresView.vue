@@ -1,16 +1,25 @@
 <script setup lang="ts">
-import library from '@/../../parser/data/current/Formatted_Biblioteca_byGenre.json'
-import { ref, computed } from 'vue'
+import { ref, computed, onMounted } from 'vue'
 
-import type { Genre } from '@/models/itunes'
+import type { Genre, GenresResponse } from '@/models/itunes'
 
+import { useiTunesApi } from '@/apis/use-itunes-api'
 import ArrowIcon from '@/assets/arrow.svg'
 import { formatMilliseconds } from '@/utils/itunes'
 
-const genres = ref<Genre[]>(library.data)
+const genresLibrary = ref<GenresResponse>({ data: [] })
+const genres = computed<Genre[]>(() => genresLibrary.value.data)
+
 const topCount = ref<number>(15)
 
 const shownGenres = computed(() => genres.value.slice(0, topCount.value))
+
+onMounted(async () => {
+  const response = await useiTunesApi().getGenres()
+  if (response.data.value) {
+    genresLibrary.value = response.data.value
+  }
+})
 </script>
 
 <template>

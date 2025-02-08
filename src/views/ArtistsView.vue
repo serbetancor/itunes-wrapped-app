@@ -1,19 +1,28 @@
 <script setup lang="ts">
-import library from '@/../../parser/data/current/Formatted_Biblioteca_byArtist.json'
-import { ref, computed } from 'vue'
+import { ref, computed, onMounted } from 'vue'
 
-import type { Artist } from '@/models/itunes'
+import type { Artist, ArtistsResponse } from '@/models/itunes'
 
+import { useiTunesApi } from '@/apis/use-itunes-api'
 import ArrowIcon from '@/assets/arrow.svg'
 import HyphenIcon from '@/assets/hyphen.svg'
 import NoImageIcon from '@/assets/no-image.svg'
 import TopArtistCard from '@/components/TopArtistCard.vue'
 import { formatMilliseconds } from '@/utils/itunes'
 
-const artists = ref<Artist[]>(library.data)
+const artistsLibrary = ref<ArtistsResponse>({ data: [] })
+const artists = computed<Artist[]>(() => artistsLibrary.value.data)
+
 const topCount = ref<number>(20)
 
 const shownArtists = computed(() => artists.value.slice(0, topCount.value))
+
+onMounted(async () => {
+  const response = await useiTunesApi().getArtists()
+  if (response.data.value) {
+    artistsLibrary.value = response.data.value
+  }
+})
 </script>
 
 <template>
