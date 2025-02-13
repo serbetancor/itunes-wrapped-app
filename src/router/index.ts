@@ -19,9 +19,15 @@ const routes: Array<RouteRecordRaw> = [
     path: '/albums',
   },
   {
-    component: async () => import('@/views/ArtistsView.vue') as RouteComponent,
+    component: async () => import('@/views/artists/ArtistsView.vue') as RouteComponent,
     name: 'artists',
     path: '/artists',
+  },
+  {
+    component: async () => import('@/views/artists/ArtistDetailView.vue') as RouteComponent,
+    name: 'artist-detail',
+    path: '/artists/:id',
+    props: true,
   },
   {
     component: async () => import('@/views/GenresView.vue') as RouteComponent,

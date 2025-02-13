@@ -11,3 +11,7 @@ export function formatMilliseconds(ms: number): string {
 
   return parts.join(' ')
 }
+
+export function getRandomAngle(): number {
+  return Math.floor(Math.random() * 360)
+}
