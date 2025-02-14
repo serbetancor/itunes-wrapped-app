@@ -3,6 +3,7 @@ interface BaseEntity {
   name: string
   timePlayed: number
   positionsGained: number
+  position: number
   image?: string
 }
 

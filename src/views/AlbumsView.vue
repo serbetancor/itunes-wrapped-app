@@ -28,11 +28,11 @@ onMounted(async () => {
     <div class="w-10/12 px-4">
       <ul class="divide-y">
         <li
-          v-for="(album, index) in shownAlbums"
+          v-for="album in shownAlbums"
           :key="album.id"
           class="odd:bg-blue/10 grid min-h-12 grid-cols-[auto_auto_1fr_auto_auto] items-center gap-3 p-2 py-1"
         >
-          <span class="w-4 font-semibold">{{ index + 1 }}</span>
+          <span class="w-4 font-semibold">{{ album.position }}</span>
           <img v-if="album.image" class="w-10 rounded-full" :src="album.image" />
           <NoImageIcon v-else class="w-10 rounded-full border p-2" />
           <span>{{ album.name }}</span>

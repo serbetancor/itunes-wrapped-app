@@ -1,6 +1,7 @@
 @import 'tailwindcss';
 @custom-variant dark (&:where(.dark, .dark *));
 @theme {
+  --breakpoint-desktop: 576px;
   --color-blue: #35c0fb;
   --color-green: #23c552;
   --color-pink: #ff5e73;

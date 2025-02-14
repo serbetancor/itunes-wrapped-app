@@ -17,6 +17,6 @@ defineProps({
   >
     <HyphenIcon v-if="positionsGained === 0" class="w-4" />
     <ArrowIcon v-else class="w-4" :class="{ 'rotate-180': positionsGained < 0 }" />
-    <span class="w-5 text-right">{{ positionsGained }}</span>
+    <span class="ml-1 w-fit text-right">{{ positionsGained }}</span>
   </div>
 </template>
