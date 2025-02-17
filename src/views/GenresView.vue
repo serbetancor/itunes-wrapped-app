@@ -2,7 +2,7 @@
 import { storeToRefs } from 'pinia'
 import { ref, computed, onMounted } from 'vue'
 
-import ArrowIcon from '@/assets/arrow.svg'
+import PositionsGained from '@/components/PositionsGained.vue'
 import { useiTunesStore } from '@/stores/useiTunesStore'
 import { formatMilliseconds } from '@/utils/itunes'
 
@@ -34,17 +34,7 @@ onMounted(async () => {
           <span class="font-semibold">{{ genre.position }}</span>
           <span>{{ genre.name }}</span>
           <span>{{ formatMilliseconds(genre.timePlayed) }}</span>
-          <div
-            class="flex items-center"
-            :class="{
-              'text-red': genre.positionsGained < 0,
-              'text-green': genre.positionsGained > 0,
-            }"
-          >
-            <span v-if="genre.positionsGained === 0" class="w-4 text-center">-</span>
-            <ArrowIcon v-else class="w-4" :class="{ 'rotate-180': genre.positionsGained < 0 }" />
-            <span class="w-5 text-right">{{ genre.positionsGained }}</span>
-          </div>
+          <PositionsGained v-if="genre.positionsGained" :positions-gained="genre.positionsGained" />
         </li>
       </ul>
     </div>

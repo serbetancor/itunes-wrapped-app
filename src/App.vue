@@ -3,7 +3,7 @@ import { ref, onMounted } from 'vue'
 
 import { getRouter } from '@/router'
 
-const topics = ['songs', 'albums', 'artists', 'genres']
+const topics = ['tracks', 'albums', 'artists', 'genres']
 const isDark = ref(false)
 
 const toggleDarkMode = () => {

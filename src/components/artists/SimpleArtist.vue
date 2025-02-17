@@ -30,7 +30,7 @@ const randomAngle = ref(getRandomAngle())
       <span class="text-center font-bold">{{ artist.name }}</span>
       <div class="my-auto flex w-full justify-center gap-2">
         <span class="text-center">{{ formatMilliseconds(artist.timePlayed) }}</span>
-        <PositionsGained :positions-gained="artist.positionsGained" />
+        <PositionsGained v-if="artist.positionsGained" :positions-gained="artist.positionsGained" />
       </div>
     </div>
   </div>

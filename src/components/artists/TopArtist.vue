@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref, type PropType } from 'vue'
 
-import SimpleSong from '../songs/SimpleSong.vue'
+import SimpleTrack from '../tracks/SimpleTrack.vue'
 
 import type { Artist } from '@/models/itunes'
 
@@ -40,11 +40,11 @@ const randomAngle = ref(getRandomAngle())
 
       <div class="flex w-full justify-center gap-2">
         <span class="text-center">{{ formatMilliseconds(artist.timePlayed) }}</span>
-        <PositionsGained :positions-gained="artist.positionsGained" />
+        <PositionsGained v-if="artist.positionsGained" :positions-gained="artist.positionsGained" />
       </div>
 
       <div class="my-auto flex flex-col gap-2">
-        <SimpleSong v-for="song in artist.songs.slice(0, albumNumber)" :key="song.id" :song />
+        <SimpleTrack v-for="track in artist.tracks.slice(0, albumNumber)" :key="track.id" :track />
       </div>
     </div>
   </div>

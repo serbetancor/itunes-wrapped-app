@@ -6,12 +6,12 @@ const routes: Array<RouteRecordRaw> = [
   {
     name: 'home',
     path: '/',
-    redirect: { name: 'songs' },
+    redirect: { name: 'tracks' },
   },
   {
-    component: async () => import('@/views/SongsView.vue') as RouteComponent,
-    name: 'songs',
-    path: '/songs',
+    component: async () => import('@/views/TracksView.vue') as RouteComponent,
+    name: 'tracks',
+    path: '/tracks',
   },
   {
     component: async () => import('@/views/AlbumsView.vue') as RouteComponent,

@@ -5,7 +5,7 @@ import type { Artist } from '@/models/itunes'
 
 import { useiTunesApi } from '@/apis/use-itunes-api'
 import ImagePosition from '@/components/ImagePosition.vue'
-import SimpleSong from '@/components/songs/SimpleSong.vue'
+import SimpleTrack from '@/components/tracks/SimpleTrack.vue'
 
 const props = defineProps({
   id: { required: true, type: String },
@@ -31,11 +31,11 @@ onMounted(async () => {
           class="desktop:w-100 text-9xl"
         />
         <h1 class="text-3xl font-bold">{{ artist.name }}</h1>
-        <p class="text-gray-400">{{ artist.songsCount }} songs</p>
+        <p class="text-gray-400">{{ artist.tracksCount }} tracks</p>
       </div>
       <div class="flex w-full flex-col gap-4 p-2">
-        <span class="text-4xl">Top Songs</span>
-        <SimpleSong v-for="song in artist.songs.slice(0, 10)" :key="song.id" :song />
+        <span class="text-4xl">Top Tracks</span>
+        <SimpleTrack v-for="track in artist.tracks.slice(0, 10)" :key="track.id" :track />
       </div>
     </div>
   </div>

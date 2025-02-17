@@ -2,12 +2,12 @@ import type {
   AlbumsResponse,
   ArtistsResponse,
   GenresResponse,
-  SongsResponse,
+  TracksResponse,
 } from '@/models/itunes'
 
 import { buildUrl, createApiFetch } from '@/apis/request'
 
-type Endpoint = 'albums' | 'artists' | 'genres' | 'songs'
+type Endpoint = 'albums' | 'artists' | 'genres' | 'tracks'
 
 export function useiTunesApi() {
   const baseUrl = 'https://itunes-wrapped-api.onrender.com/'
@@ -21,6 +21,6 @@ export function useiTunesApi() {
     getAlbums: (id?: string) => fetchData<AlbumsResponse>('albums', id),
     getArtists: (id?: string) => fetchData<ArtistsResponse>('artists', id),
     getGenres: (id?: string) => fetchData<GenresResponse>('genres', id),
-    getSongs: (id?: string) => fetchData<SongsResponse>('songs', id),
+    getTracks: (id?: string) => fetchData<TracksResponse>('tracks', id),
   } as const
 }
