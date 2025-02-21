@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { storeToRefs } from 'pinia'
-import { ref, computed, onMounted } from 'vue'
+import { ref, computed, onMounted, watch } from 'vue'
 
 import PositionsGained from '@/components/PositionsGained.vue'
 import { useiTunesStore } from '@/stores/useiTunesStore'
@@ -10,9 +10,15 @@ const store = useiTunesStore()
 
 const topCount = ref<number>(15)
 
-const { genresLibrary } = storeToRefs(store)
+const { genresLibrary, isYearlyActive } = storeToRefs(store)
 const genres = computed(() => genresLibrary.value.data)
 const shownGenres = computed(() => genres.value.slice(0, topCount.value))
+
+watch(isYearlyActive, async (newValue, oldValue) => {
+  if (newValue !== oldValue) {
+    await store.fetchGenres()
+  }
+})
 
 onMounted(async () => {
   await store.fetchGenres()

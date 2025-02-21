@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { storeToRefs } from 'pinia'
-import { ref, computed, onMounted } from 'vue'
+import { ref, computed, onMounted, watch } from 'vue'
 
 import NoImageIcon from '@/assets/no-image.svg'
 import PositionsGained from '@/components/PositionsGained.vue'
@@ -11,9 +11,15 @@ const store = useiTunesStore()
 
 const topCount = ref(20)
 
-const { albumsLibrary } = storeToRefs(store)
+const { albumsLibrary, isYearlyActive } = storeToRefs(store)
 const albums = computed(() => albumsLibrary.value.data)
 const shownAlbums = computed(() => albums.value.slice(0, topCount.value))
+
+watch(isYearlyActive, async (newValue, oldValue) => {
+  if (newValue !== oldValue) {
+    await store.fetchAlbums()
+  }
+})
 
 onMounted(async () => {
   await store.fetchAlbums()

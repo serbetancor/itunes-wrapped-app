@@ -7,6 +7,26 @@
   --color-pink: #ff5e73;
   --color-purple: #9c70ff;
   --color-red: #ff4f4b;
+
+  @keyframes glitch {
+    0% {
+      text-shadow:
+        3px 3px var(--color-pink),
+        -3px -3px var(--color-blue);
+    }
+    50% {
+      text-shadow:
+        -3px -3px var(--color-pink),
+        3px 3px var(--color-blue);
+    }
+    100% {
+      text-shadow:
+        3px 3px var(--color-pink),
+        -3px -3px var(--color-blue);
+    }
+  }
+
+  --animate-glitch: glitch 0.15s 2 alternate;
 }
 
 @layer utilities {

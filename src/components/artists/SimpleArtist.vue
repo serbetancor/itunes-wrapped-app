@@ -23,7 +23,7 @@ const randomAngle = ref(getRandomAngle())
       class="from-blue via-purple to-pink absolute inset-0 z-0 rounded-2xl bg-gradient-to-r p-[2px]"
       :style="`background: linear-gradient(${randomAngle}deg, var(--color-blue), var(--color-purple), var(--color-pink));`"
     >
-      <div class="h-full w-full rounded-2xl bg-white dark:bg-zinc-800"></div>
+      <div class="h-full w-full rounded-2xl bg-white/90 dark:bg-zinc-800"></div>
     </div>
     <div class="relative z-10 flex h-full flex-col items-center p-2">
       <ImagePosition :image="artist.image" :position="artist.position" class="text-4xl" />

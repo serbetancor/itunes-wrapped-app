@@ -1,17 +1,31 @@
 <script setup lang="ts">
-import { onMounted, ref } from 'vue'
+import { storeToRefs } from 'pinia'
+import { onMounted, ref, watch } from 'vue'
 
 import type { Artist } from '@/models/itunes'
 
 import { useiTunesApi } from '@/apis/use-itunes-api'
 import ImagePosition from '@/components/ImagePosition.vue'
 import SimpleTrack from '@/components/tracks/SimpleTrack.vue'
+import { useiTunesStore } from '@/stores/useiTunesStore'
 
 const props = defineProps({
   id: { required: true, type: String },
 })
 
 const artist = ref<Artist>()
+
+const store = useiTunesStore()
+const { isYearlyActive } = storeToRefs(store)
+
+watch(isYearlyActive, async (newValue, oldValue) => {
+  if (newValue !== oldValue) {
+    const response = await useiTunesApi().getArtists(props.id)
+    if (response.data.value) {
+      artist.value = response.data.value.data[0]
+    }
+  }
+})
 
 onMounted(async () => {
   const response = await useiTunesApi().getArtists(props.id)
