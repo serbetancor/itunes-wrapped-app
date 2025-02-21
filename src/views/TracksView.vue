@@ -2,8 +2,8 @@
 import { storeToRefs } from 'pinia'
 import { ref, computed, onMounted } from 'vue'
 
-import ArrowIcon from '@/assets/arrow.svg'
 import NoImageIcon from '@/assets/no-image.svg'
+import PositionsGained from '@/components/PositionsGained.vue'
 import { useiTunesStore } from '@/stores/useiTunesStore'
 import { formatMilliseconds } from '@/utils/itunes'
 
@@ -11,12 +11,12 @@ const store = useiTunesStore()
 
 const topCount = ref<number>(20)
 
-const { songsLibrary } = storeToRefs(store)
-const songs = computed(() => songsLibrary.value.data)
-const shownSongs = computed(() => songs.value.slice(0, topCount.value))
+const { tracksLibrary } = storeToRefs(store)
+const tracks = computed(() => tracksLibrary.value.data)
+const shownTracks = computed(() => tracks.value.slice(0, topCount.value))
 
 onMounted(async () => {
-  await store.fetchSongs()
+  await store.fetchTracks()
 })
 /*
 const tooltip = ref<{ x: number; y: number; text: string; visible: boolean }>({
@@ -26,13 +26,13 @@ const tooltip = ref<{ x: number; y: number; text: string; visible: boolean }>({
   y: 0,
 })
 
-const maxTimePlayed = computed(() => Math.max(...songs.value.map((s) => s.timePlayed)))
+const maxTimePlayed = computed(() => Math.max(...tracks.value.map((s) => s.timePlayed)))
 
 
 const circles = computed(() => {
   const maxRadius = 350 / Math.sqrt(topCount.value)
-  return songs.value.slice(0, topCount.value).map((song, index) => {
-    const radius = Math.sqrt(song.timePlayed / maxTimePlayed.value) * maxRadius
+  return tracks.value.slice(0, topCount.value).map((track, index) => {
+    const radius = Math.sqrt(track.timePlayed / maxTimePlayed.value) * maxRadius
     const angle = (index / topCount.value) * Math.PI * 2
     const x = 375 + Math.cos(angle) * (350 - radius)
     const y = 375 + Math.sin(angle) * (350 - radius)
@@ -42,10 +42,10 @@ const circles = computed(() => {
 
     return {
       color: randomColor,
-      id: song.id,
-      name: song.name,
+      id: track.id,
+      name: track.name,
       radius,
-      timePlayed: song.timePlayed,
+      timePlayed: track.timePlayed,
       x,
       y,
     }
@@ -75,7 +75,7 @@ const hideTooltip = () => {
 <template>
   <div class="flex flex-col items-center gap-4 p-4">
     <input type="range" v-model="topCount" min="1" max="400" class="mb w-64" />
-    <span>Top {{ topCount }} song{{ topCount > 1 ? 's' : '' }}</span>
+    <span>Top {{ topCount }} track{{ topCount > 1 ? 's' : '' }}</span>
 
     <!--
 
@@ -104,25 +104,15 @@ const hideTooltip = () => {
     <div class="w-10/12 px-4">
       <ul class="divide-y">
         <li
-          v-for="(song, index) in shownSongs"
-          :key="song.id"
+          v-for="track in shownTracks"
+          :key="track.id"
           class="odd:bg-pink/10 grid min-h-12 grid-cols-[auto_auto_1fr_auto_auto] items-center gap-3 p-2 py-1"
         >
-          <span class="w-4 font-semibold">{{ index + 1 }}</span>
-          <img v-if="song.image" class="w-10 rounded-full" :src="song.image" />
-          <NoImageIcon v-else class="w-10 rounded-full border p-2" /> <span>{{ song.name }}</span>
-          <span>{{ formatMilliseconds(song.timePlayed) }}</span>
-          <div
-            class="flex items-center"
-            :class="{
-              'text-red': song.positionsGained < 0,
-              'text-green': song.positionsGained > 0,
-            }"
-          >
-            <span v-if="song.positionsGained === 0" class="w-4 text-center">-</span>
-            <ArrowIcon v-else class="w-4" :class="{ 'rotate-180': song.positionsGained < 0 }" />
-            <span class="w-5 text-right">{{ song.positionsGained }}</span>
-          </div>
+          <span class="w-4 font-semibold">{{ track.position }}</span>
+          <img v-if="track.image" class="w-10 rounded-full" :src="track.image" />
+          <NoImageIcon v-else class="w-10 rounded-full border p-2" /> <span>{{ track.name }}</span>
+          <span>{{ formatMilliseconds(track.timePlayed) }}</span>
+          <PositionsGained :positions-gained="track.positionsGained" />
         </li>
       </ul>
     </div>

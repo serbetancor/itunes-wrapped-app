@@ -2,8 +2,8 @@
 import { storeToRefs } from 'pinia'
 import { ref, computed, onMounted } from 'vue'
 
-import ArrowIcon from '@/assets/arrow.svg'
 import NoImageIcon from '@/assets/no-image.svg'
+import PositionsGained from '@/components/PositionsGained.vue'
 import { useiTunesStore } from '@/stores/useiTunesStore'
 import { formatMilliseconds } from '@/utils/itunes'
 
@@ -28,26 +28,16 @@ onMounted(async () => {
     <div class="w-10/12 px-4">
       <ul class="divide-y">
         <li
-          v-for="(album, index) in shownAlbums"
+          v-for="album in shownAlbums"
           :key="album.id"
           class="odd:bg-blue/10 grid min-h-12 grid-cols-[auto_auto_1fr_auto_auto] items-center gap-3 p-2 py-1"
         >
-          <span class="w-4 font-semibold">{{ index + 1 }}</span>
+          <span class="w-4 font-semibold">{{ album.position }}</span>
           <img v-if="album.image" class="w-10 rounded-full" :src="album.image" />
           <NoImageIcon v-else class="w-10 rounded-full border p-2" />
           <span>{{ album.name }}</span>
           <span>{{ formatMilliseconds(album.timePlayed) }}</span>
-          <div
-            class="flex items-center"
-            :class="{
-              'text-red': album.positionsGained < 0,
-              'text-green': album.positionsGained > 0,
-            }"
-          >
-            <span v-if="album.positionsGained === 0" class="w-4 text-center">-</span>
-            <ArrowIcon v-else class="w-4" :class="{ 'rotate-180': album.positionsGained < 0 }" />
-            <span class="w-5 text-right">{{ album.positionsGained }}</span>
-          </div>
+          <PositionsGained :positions-gained="album.positionsGained" />
         </li>
       </ul>
     </div>

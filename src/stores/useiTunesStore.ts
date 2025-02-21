@@ -5,7 +5,7 @@ import type {
   AlbumsResponse,
   ArtistsResponse,
   GenresResponse,
-  SongsResponse,
+  TracksResponse,
 } from '@/models/itunes'
 
 import { useiTunesApi } from '@/apis/use-itunes-api'
@@ -14,7 +14,7 @@ export const useiTunesStore = defineStore('iTunes', () => {
   const albumsLibrary = ref<AlbumsResponse>({ data: [] })
   const artistsLibrary = ref<ArtistsResponse>({ data: [] })
   const genresLibrary = ref<GenresResponse>({ data: [] })
-  const songsLibrary = ref<SongsResponse>({ data: [] })
+  const tracksLibrary = ref<TracksResponse>({ data: [] })
 
   const fetchAlbums = async () => {
     if (!albumsLibrary.value.data.length) {
@@ -43,11 +43,11 @@ export const useiTunesStore = defineStore('iTunes', () => {
     }
   }
 
-  const fetchSongs = async () => {
-    if (!songsLibrary.value.data.length) {
-      const response = await useiTunesApi().getSongs()
+  const fetchTracks = async () => {
+    if (!tracksLibrary.value.data.length) {
+      const response = await useiTunesApi().getTracks()
       if (response.data.value) {
-        songsLibrary.value = response.data.value
+        tracksLibrary.value = response.data.value
       }
     }
   }
@@ -58,8 +58,8 @@ export const useiTunesStore = defineStore('iTunes', () => {
     fetchAlbums,
     fetchArtists,
     fetchGenres,
-    fetchSongs,
+    fetchTracks,
     genresLibrary,
-    songsLibrary,
+    tracksLibrary,
   }
 })

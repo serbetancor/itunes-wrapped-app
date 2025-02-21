@@ -6,12 +6,12 @@ const routes: Array<RouteRecordRaw> = [
   {
     name: 'home',
     path: '/',
-    redirect: { name: 'songs' },
+    redirect: { name: 'tracks' },
   },
   {
-    component: async () => import('@/views/SongsView.vue') as RouteComponent,
-    name: 'songs',
-    path: '/songs',
+    component: async () => import('@/views/TracksView.vue') as RouteComponent,
+    name: 'tracks',
+    path: '/tracks',
   },
   {
     component: async () => import('@/views/AlbumsView.vue') as RouteComponent,
@@ -19,9 +19,15 @@ const routes: Array<RouteRecordRaw> = [
     path: '/albums',
   },
   {
-    component: async () => import('@/views/ArtistsView.vue') as RouteComponent,
+    component: async () => import('@/views/artists/ArtistsView.vue') as RouteComponent,
     name: 'artists',
     path: '/artists',
+  },
+  {
+    component: async () => import('@/views/artists/ArtistDetailView.vue') as RouteComponent,
+    name: 'artist-detail',
+    path: '/artists/:id',
+    props: true,
   },
   {
     component: async () => import('@/views/GenresView.vue') as RouteComponent,

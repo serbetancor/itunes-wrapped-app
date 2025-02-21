@@ -2,7 +2,7 @@
 import { storeToRefs } from 'pinia'
 import { ref, computed, onMounted } from 'vue'
 
-import ArrowIcon from '@/assets/arrow.svg'
+import PositionsGained from '@/components/PositionsGained.vue'
 import { useiTunesStore } from '@/stores/useiTunesStore'
 import { formatMilliseconds } from '@/utils/itunes'
 
@@ -27,24 +27,14 @@ onMounted(async () => {
     <div class="w-10/12 px-4">
       <ul class="divide-y">
         <li
-          v-for="(genre, index) in shownGenres"
+          v-for="genre in shownGenres"
           :key="genre.id"
           class="odd:bg-purple/10 grid min-h-12 grid-cols-[auto_1fr_auto_auto] items-center gap-2 p-2 py-1"
         >
-          <span class="font-semibold">{{ index + 1 }}</span>
+          <span class="font-semibold">{{ genre.position }}</span>
           <span>{{ genre.name }}</span>
           <span>{{ formatMilliseconds(genre.timePlayed) }}</span>
-          <div
-            class="flex items-center"
-            :class="{
-              'text-red': genre.positionsGained < 0,
-              'text-green': genre.positionsGained > 0,
-            }"
-          >
-            <span v-if="genre.positionsGained === 0" class="w-4 text-center">-</span>
-            <ArrowIcon v-else class="w-4" :class="{ 'rotate-180': genre.positionsGained < 0 }" />
-            <span class="w-5 text-right">{{ genre.positionsGained }}</span>
-          </div>
+          <PositionsGained :positions-gained="genre.positionsGained" />
         </li>
       </ul>
     </div>

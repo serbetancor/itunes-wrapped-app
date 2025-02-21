@@ -3,7 +3,7 @@ import { ref, onMounted } from 'vue'
 
 import { getRouter } from '@/router'
 
-const topics = ['songs', 'albums', 'artists', 'genres']
+const topics = ['tracks', 'albums', 'artists', 'genres']
 const isDark = ref(false)
 
 const toggleDarkMode = () => {
@@ -27,12 +27,12 @@ onMounted(() => {
 
 <template>
   <div
-    class="transition-color flex min-h-screen w-full flex-col bg-white text-zinc-700 duration-1000 dark:bg-zinc-700 dark:text-white"
+    class="transition-color flex min-h-screen w-full flex-col bg-white text-zinc-700 duration-600 dark:bg-zinc-700 dark:text-white"
   >
     <div class="absolute top-4 right-4">
       <button
         @click="toggleDarkMode"
-        class="cursor-pointer rounded-full bg-gray-800 p-2 text-white shadow-md transition-all duration-1000 dark:bg-yellow-400 dark:text-black"
+        class="cursor-pointer rounded-full bg-gray-800 p-2 text-white shadow-md transition-all duration-600 dark:bg-yellow-400 dark:text-black"
       >
         <span v-if="isDark">🌞</span>
         <span v-else>🌙</span>
@@ -49,6 +49,8 @@ onMounted(() => {
         <span>{{ topic }}</span>
       </button>
     </div>
-    <router-view />
+    <div class="flex w-full flex-grow justify-center">
+      <router-view class="w-full" />
+    </div>
   </div>
 </template>

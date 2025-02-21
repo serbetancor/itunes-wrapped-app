@@ -25,6 +25,7 @@ export default defineConfigWithVueTs(
     plugins: {
       import: importPlugin,
       'sort-keys-fix': sortKeysFix,
+      vue: pluginVue,
     },
     rules: {
       'import/order': [
@@ -45,6 +46,12 @@ export default defineConfigWithVueTs(
         },
       ],
       'sort-keys-fix/sort-keys-fix': 'warn',
+      'vue/component-tags-order': [
+        'error',
+        {
+          order: ['script', 'template', 'style'],
+        },
+      ],
     },
   },
 )
