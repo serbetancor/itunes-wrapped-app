@@ -1,14 +1,17 @@
 <script setup lang="ts">
+import type { PropType } from 'vue'
+
 import ArrowIcon from '@/assets/arrow.svg'
 import HyphenIcon from '@/assets/hyphen.svg'
 
 defineProps({
-  positionsGained: { required: true, type: Number },
+  positionsGained: { required: true, type: Number as PropType<number | undefined> },
 })
 </script>
 
 <template>
   <div
+    v-if="positionsGained !== undefined"
     class="flex items-center"
     :class="{
       'text-red': positionsGained < 0,

@@ -34,7 +34,7 @@ onMounted(async () => {
           <span class="font-semibold">{{ genre.position }}</span>
           <span>{{ genre.name }}</span>
           <span>{{ formatMilliseconds(genre.timePlayed) }}</span>
-          <PositionsGained v-if="genre.positionsGained" :positions-gained="genre.positionsGained" />
+          <PositionsGained :positions-gained="genre.positionsGained" />
         </li>
       </ul>
     </div>

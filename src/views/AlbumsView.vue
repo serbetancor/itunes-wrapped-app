@@ -37,7 +37,7 @@ onMounted(async () => {
           <NoImageIcon v-else class="w-10 rounded-full border p-2" />
           <span>{{ album.name }}</span>
           <span>{{ formatMilliseconds(album.timePlayed) }}</span>
-          <PositionsGained v-if="album.positionsGained" :positions-gained="album.positionsGained" />
+          <PositionsGained :positions-gained="album.positionsGained" />
         </li>
       </ul>
     </div>

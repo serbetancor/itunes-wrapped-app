@@ -29,21 +29,21 @@ const randomAngle = ref(getRandomAngle())
     >
       <div class="h-full w-full rounded-2xl bg-white dark:bg-zinc-800"></div>
     </div>
-    <div class="relative z-10 flex h-full flex-col items-center p-4">
+    <div class="relative z-10 flex h-full w-full flex-col items-center p-4">
       <ImagePosition
         :image="artist.image"
         :position="artist.position"
         class="text-4xl"
-        :class="top ? 'w-50 text-9xl' : 'w-35 text-6xl'"
+        :class="top ? 'max-w-50 text-9xl' : 'max-w-35 text-6xl'"
       />
       <span class="text-center font-bold">{{ artist.name }}</span>
 
       <div class="flex w-full justify-center gap-2">
         <span class="text-center">{{ formatMilliseconds(artist.timePlayed) }}</span>
-        <PositionsGained v-if="artist.positionsGained" :positions-gained="artist.positionsGained" />
+        <PositionsGained :positions-gained="artist.positionsGained" />
       </div>
 
-      <div class="my-auto flex flex-col gap-2">
+      <div class="my-auto flex w-full flex-col gap-2">
         <SimpleTrack v-for="track in artist.tracks.slice(0, albumNumber)" :key="track.id" :track />
       </div>
     </div>

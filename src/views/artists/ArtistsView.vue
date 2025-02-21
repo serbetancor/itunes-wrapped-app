@@ -26,17 +26,17 @@ onMounted(async () => {
 
 <template>
   <div class="flex flex-col items-center gap-4 p-4">
-    <div v-if="!showMore" class="flex h-full max-w-350 flex-col items-center gap-4 px-4">
+    <div v-if="!showMore" class="flex h-full max-w-275 flex-col items-center gap-4 px-4">
       <div
         v-for="(range, rangeIndex) in [
           {
             start: 0,
-            end: 3,
+            end: 2,
             top: true,
             albumNumber: 4,
-            class: 'desktop:w-1/3 h-150 desktop:mt-10',
+            class: 'desktop:w-1/2 h-150 desktop:mt-10',
           },
-          { start: 3, end: 7, top: false, class: 'desktop:w-1/4 desktop:my-auto h-100' },
+          { start: 2, end: 5, top: false, class: 'desktop:w-1/3 desktop:my-auto h-100' },
         ]"
         :key="rangeIndex"
         class="desktop:flex-row flex flex-col gap-4"
@@ -76,7 +76,7 @@ onMounted(async () => {
       class="bg-blue mt-auto mb-4 w-fit cursor-pointer rounded-full px-6 py-3 text-lg transition duration-300 hover:scale-110"
       @click="showMore = !showMore"
     >
-      {{ showMore ? 'Show Top 7' : 'Show Top 50' }}
+      {{ showMore ? 'Show Top 5' : 'Show Top 50' }}
     </button>
   </div>
 </template>

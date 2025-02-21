@@ -13,7 +13,7 @@ const randomAngle = ref(getRandomAngle())
 </script>
 
 <template>
-  <div class="relative h-fit">
+  <div class="relative h-auto">
     <img v-if="image" class="rounded-full" :src="image" />
     <NoImageIcon v-else class="rounded-full border" />
     <span

@@ -112,7 +112,7 @@ const hideTooltip = () => {
           <img v-if="track.image" class="w-10 rounded-full" :src="track.image" />
           <NoImageIcon v-else class="w-10 rounded-full border p-2" /> <span>{{ track.name }}</span>
           <span>{{ formatMilliseconds(track.timePlayed) }}</span>
-          <PositionsGained v-if="track.positionsGained" :positions-gained="track.positionsGained" />
+          <PositionsGained :positions-gained="track.positionsGained" />
         </li>
       </ul>
     </div>
