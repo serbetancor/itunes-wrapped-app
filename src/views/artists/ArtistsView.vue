@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { useScroll } from '@vueuse/core'
 import { storeToRefs } from 'pinia'
-import { ref, computed, onMounted } from 'vue'
+import { ref, computed, onMounted, watch } from 'vue'
 import { useRouter } from 'vue-router'
 
 import SimpleArtist from '@/components/artists/SimpleArtist.vue'
@@ -13,11 +13,17 @@ const router = useRouter()
 
 const showMore = ref(false)
 
-const { artistsLibrary } = storeToRefs(store)
+const { artistsLibrary, isYearlyActive } = storeToRefs(store)
 const artists = computed(() => artistsLibrary.value.data)
 
 const scrollContainer = ref<HTMLElement | null>(null)
 const scrollElement = useScroll(scrollContainer)
+
+watch(isYearlyActive, async (newValue, oldValue) => {
+  if (newValue !== oldValue) {
+    await store.fetchArtists()
+  }
+})
 
 onMounted(async () => {
   await store.fetchArtists()

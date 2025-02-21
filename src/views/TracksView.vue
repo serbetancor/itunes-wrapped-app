@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { storeToRefs } from 'pinia'
-import { ref, computed, onMounted } from 'vue'
+import { ref, computed, onMounted, watch } from 'vue'
 
 import NoImageIcon from '@/assets/no-image.svg'
 import PositionsGained from '@/components/PositionsGained.vue'
@@ -11,9 +11,15 @@ const store = useiTunesStore()
 
 const topCount = ref<number>(20)
 
-const { tracksLibrary } = storeToRefs(store)
+const { tracksLibrary, isYearlyActive } = storeToRefs(store)
 const tracks = computed(() => tracksLibrary.value.data)
 const shownTracks = computed(() => tracks.value.slice(0, topCount.value))
+
+watch(isYearlyActive, async (newValue, oldValue) => {
+  if (newValue !== oldValue) {
+    await store.fetchTracks()
+  }
+})
 
 onMounted(async () => {
   await store.fetchTracks()

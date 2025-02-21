@@ -16,6 +16,16 @@ export const useiTunesStore = defineStore('iTunes', () => {
   const genresLibrary = ref<GenresResponse>({ data: [] })
   const tracksLibrary = ref<TracksResponse>({ data: [] })
 
+  const isYearlyActive = ref(false)
+
+  const toggleYearlyMode = async () => {
+    isYearlyActive.value = !isYearlyActive.value
+    albumsLibrary.value = { data: [] }
+    artistsLibrary.value = { data: [] }
+    genresLibrary.value = { data: [] }
+    tracksLibrary.value = { data: [] }
+  }
+
   const fetchAlbums = async () => {
     if (!albumsLibrary.value.data.length) {
       const response = await useiTunesApi().getAlbums()
@@ -60,6 +70,8 @@ export const useiTunesStore = defineStore('iTunes', () => {
     fetchGenres,
     fetchTracks,
     genresLibrary,
+    isYearlyActive,
+    toggleYearlyMode,
     tracksLibrary,
   }
 })

@@ -6,15 +6,18 @@ import type {
 } from '@/models/itunes'
 
 import { buildUrl, createApiFetch } from '@/apis/request'
+import { useiTunesStore } from '@/stores/useiTunesStore'
 
 type Endpoint = 'albums' | 'artists' | 'genres' | 'tracks'
 
 export function useiTunesApi() {
   const baseUrl = 'https://itunes-wrapped-api.onrender.com/'
   const apiFetch = createApiFetch(baseUrl)
+  const store = useiTunesStore()
 
   function fetchData<T>(endpoint: Endpoint, id?: string) {
-    return apiFetch(buildUrl(endpoint, { ...(id && { id }) })).json<T>()
+    const yearly = store.isYearlyActive
+    return apiFetch(buildUrl(endpoint, { ...(id && { id }), ...(yearly && { yearly }) })).json<T>()
   }
 
   return {
