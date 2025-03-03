@@ -9,12 +9,12 @@ const routes: Array<RouteRecordRaw> = [
     redirect: { name: 'tracks' },
   },
   {
-    component: async () => import('@/views/TracksView.vue') as RouteComponent,
+    component: async () => import('@/views/tracks/TracksView.vue') as RouteComponent,
     name: 'tracks',
     path: '/tracks',
   },
   {
-    component: async () => import('@/views/AlbumsView.vue') as RouteComponent,
+    component: async () => import('@/views/albums/AlbumsView.vue') as RouteComponent,
     name: 'albums',
     path: '/albums',
   },
@@ -30,7 +30,7 @@ const routes: Array<RouteRecordRaw> = [
     props: true,
   },
   {
-    component: async () => import('@/views/GenresView.vue') as RouteComponent,
+    component: async () => import('@/views/genres/GenresView.vue') as RouteComponent,
     name: 'genres',
     path: '/genres',
   },

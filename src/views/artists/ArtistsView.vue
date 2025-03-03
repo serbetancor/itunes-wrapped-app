@@ -4,8 +4,8 @@ import { storeToRefs } from 'pinia'
 import { ref, computed, onMounted, watch } from 'vue'
 import { useRouter } from 'vue-router'
 
-import SimpleArtist from '@/components/artists/SimpleArtist.vue'
-import TopArtist from '@/components/artists/TopArtist.vue'
+import SimpleArtistCard from '@/components/artists/SimpleArtistCard.vue'
+import TopArtistCard from '@/components/artists/TopArtistCard.vue'
 import { useiTunesStore } from '@/stores/useiTunesStore'
 
 const store = useiTunesStore()
@@ -47,7 +47,7 @@ onMounted(async () => {
         :key="rangeIndex"
         class="desktop:flex-row flex flex-col gap-4"
       >
-        <TopArtist
+        <TopArtistCard
           v-for="artist in artists.slice(range.start, range.end)"
           :key="artist.id"
           :album-number="range.albumNumber"
@@ -71,7 +71,7 @@ onMounted(async () => {
           !scrollElement.arrivedState?.top && !scrollElement.arrivedState?.bottom,
       }"
     >
-      <SimpleArtist
+      <SimpleArtistCard
         v-for="artist in artists.slice(0, 50)"
         :key="artist.id"
         :artist

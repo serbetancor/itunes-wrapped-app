@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { storeToRefs } from 'pinia'
-import { ref, computed, onMounted, watch } from 'vue'
+import { computed, onMounted, watch } from 'vue'
 
 import PositionsGained from '@/components/PositionsGained.vue'
 import { useiTunesStore } from '@/stores/useiTunesStore'
@@ -8,11 +8,8 @@ import { formatMilliseconds } from '@/utils/itunes'
 
 const store = useiTunesStore()
 
-const topCount = ref<number>(15)
-
 const { genresLibrary, isYearlyActive } = storeToRefs(store)
 const genres = computed(() => genresLibrary.value.data)
-const shownGenres = computed(() => genres.value.slice(0, topCount.value))
 
 watch(isYearlyActive, async (newValue, oldValue) => {
   if (newValue !== oldValue) {
@@ -27,13 +24,10 @@ onMounted(async () => {
 
 <template>
   <div class="flex flex-col items-center gap-4 p-4">
-    <input type="range" v-model="topCount" min="1" max="400" class="mb w-64" />
-    <span>Top {{ topCount }} genre{{ topCount > 1 ? 's' : '' }}</span>
-
     <div class="w-10/12 px-4">
       <ul class="divide-y">
         <li
-          v-for="genre in shownGenres"
+          v-for="genre in genres"
           :key="genre.id"
           class="odd:bg-purple/10 grid min-h-12 grid-cols-[auto_1fr_auto_auto] items-center gap-2 p-2 py-1"
         >

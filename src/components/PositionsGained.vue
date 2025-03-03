@@ -5,7 +5,7 @@ import ArrowIcon from '@/assets/arrow.svg'
 import HyphenIcon from '@/assets/hyphen.svg'
 
 defineProps({
-  positionsGained: { required: true, type: Number as PropType<number | undefined> },
+  positionsGained: { required: false, type: Number as PropType<number> },
 })
 </script>
 
@@ -20,6 +20,6 @@ defineProps({
   >
     <HyphenIcon v-if="positionsGained === 0" class="w-4" />
     <ArrowIcon v-else class="w-4" :class="{ 'rotate-180': positionsGained < 0 }" />
-    <span class="ml-1 w-fit text-right">{{ positionsGained }}</span>
+    <span class="mr-1 w-fit text-right">{{ positionsGained }}</span>
   </div>
 </template>
