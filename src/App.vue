@@ -51,7 +51,7 @@ const triggerGlitch = () => {
   >
     <button
       @click="toggleYearlyMode"
-      class="absolute top-4 left-4 cursor-pointer text-2xl font-extrabold tracking-widest uppercase transition-all duration-300 ease-out before:absolute before:inset-0 before:-z-10 before:origin-bottom-left before:skew-y-3 before:transition-all before:duration-500 before:ease-in-out hover:before:scale-105 hover:before:skew-y-0 active:scale-95"
+      class="absolute top-4 left-4 cursor-pointer text-2xl font-extrabold tracking-widest uppercase transition-all duration-300 ease-out before:absolute before:inset-0 before:-z-10 before:origin-bottom-left before:skew-y-3 before:transition-all before:duration-500 before:ease-in-out hover:before:scale-102 hover:before:skew-y-0 active:scale-95"
       @mouseover="triggerGlitch"
     >
       <span

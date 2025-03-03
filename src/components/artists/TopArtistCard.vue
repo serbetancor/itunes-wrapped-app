@@ -1,12 +1,11 @@
 <script setup lang="ts">
 import { ref, type PropType } from 'vue'
 
-import SimpleTrack from '../tracks/SimpleTrack.vue'
-
 import type { Artist } from '@/models/itunes'
 
 import ImagePosition from '@/components/ImagePosition.vue'
 import PositionsGained from '@/components/PositionsGained.vue'
+import TrackCard from '@/components/tracks/TrackCard.vue'
 import { formatMilliseconds } from '@/utils/itunes'
 import { getRandomAngle } from '@/utils/itunes'
 
@@ -21,7 +20,7 @@ const randomAngle = ref(getRandomAngle())
 
 <template>
   <div
-    class="relative flex cursor-pointer flex-col items-center rounded-2xl p-1 drop-shadow-xl transition-all duration-300 hover:scale-105"
+    class="relative flex cursor-pointer flex-col items-center rounded-2xl p-1 drop-shadow-xl transition-all duration-300 hover:scale-102"
   >
     <div
       class="from-blue via-purple to-pink absolute inset-0 z-0 rounded-2xl bg-gradient-to-r p-[2px]"
@@ -44,7 +43,7 @@ const randomAngle = ref(getRandomAngle())
       </div>
 
       <div class="my-auto flex w-full flex-col gap-2">
-        <SimpleTrack v-for="track in artist.tracks.slice(0, albumNumber)" :key="track.id" :track />
+        <TrackCard v-for="track in artist.tracks.slice(0, albumNumber)" :key="track.id" :track />
       </div>
     </div>
   </div>

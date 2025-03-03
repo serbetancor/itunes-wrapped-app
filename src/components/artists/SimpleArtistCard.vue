@@ -17,7 +17,7 @@ const randomAngle = ref(getRandomAngle())
 
 <template>
   <div
-    class="flex w-45 cursor-pointer flex-col items-center rounded-xl p-2 drop-shadow-xl transition-all duration-300 hover:scale-105"
+    class="flex w-45 cursor-pointer flex-col items-center rounded-xl p-2 drop-shadow-xl transition-all duration-300 hover:scale-102"
   >
     <div
       class="from-blue via-purple to-pink absolute inset-0 z-0 rounded-2xl bg-gradient-to-r p-[2px]"
