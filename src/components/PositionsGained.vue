@@ -1,14 +1,3 @@
-<script setup lang="ts">
-import type { PropType } from 'vue'
-
-import ArrowIcon from '@/assets/arrow.svg'
-import HyphenIcon from '@/assets/hyphen.svg'
-
-defineProps({
-  positionsGained: { required: false, type: Number as PropType<number> },
-})
-</script>
-
 <template>
   <div
     v-if="positionsGained !== undefined"
@@ -23,3 +12,14 @@ defineProps({
     <span class="mr-1 w-fit text-right">{{ positionsGained }}</span>
   </div>
 </template>
+
+<script setup lang="ts">
+import type { PropType } from 'vue'
+
+import ArrowIcon from '@/assets/arrow.svg'
+import HyphenIcon from '@/assets/hyphen.svg'
+
+defineProps({
+  positionsGained: { required: false, type: Number as PropType<number> },
+})
+</script>

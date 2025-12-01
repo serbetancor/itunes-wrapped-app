@@ -1,3 +1,16 @@
+<template>
+  <div class="relative h-auto">
+    <img v-if="image" class="rounded-full" :src="image" />
+    <NoImageIcon v-else class="rounded-full border" />
+    <span
+      class="from-blue via-purple to-pink absolute bottom-0 left-0 bg-linear-to-r bg-clip-text font-bold text-transparent drop-shadow-md"
+      :style="`background: linear-gradient(${randomAngle}deg, var(--color-blue), var(--color-purple), var(--color-pink)); -webkit-background-clip: text;`"
+    >
+      {{ position }}
+    </span>
+  </div>
+</template>
+
 <script setup lang="ts">
 import { ref } from 'vue'
 
@@ -11,16 +24,3 @@ defineProps({
 
 const randomAngle = ref(getRandomAngle())
 </script>
-
-<template>
-  <div class="relative h-auto">
-    <img v-if="image" class="rounded-full" :src="image" />
-    <NoImageIcon v-else class="rounded-full border" />
-    <span
-      class="from-blue via-purple to-pink absolute bottom-0 left-0 bg-gradient-to-r bg-clip-text font-bold text-transparent drop-shadow-md"
-      :style="`background: linear-gradient(${randomAngle}deg, var(--color-blue), var(--color-purple), var(--color-pink)); -webkit-background-clip: text;`"
-    >
-      {{ position }}
-    </span>
-  </div>
-</template>

@@ -1,35 +1,3 @@
-<script setup lang="ts">
-import { useScroll } from '@vueuse/core'
-import { storeToRefs } from 'pinia'
-import { ref, computed, onMounted, watch } from 'vue'
-import { useRouter } from 'vue-router'
-
-import SimpleArtistCard from '@/components/artists/SimpleArtistCard.vue'
-import TopArtistCard from '@/components/artists/TopArtistCard.vue'
-import { useiTunesStore } from '@/stores/useiTunesStore'
-
-const store = useiTunesStore()
-const router = useRouter()
-
-const showMore = ref(false)
-
-const { artistsLibrary, isYearlyActive } = storeToRefs(store)
-const artists = computed(() => artistsLibrary.value.data)
-
-const scrollContainer = ref<HTMLElement | null>(null)
-const scrollElement = useScroll(scrollContainer)
-
-watch(isYearlyActive, async (newValue, oldValue) => {
-  if (newValue !== oldValue) {
-    await store.fetchArtists()
-  }
-})
-
-onMounted(async () => {
-  await store.fetchArtists()
-})
-</script>
-
 <template>
   <div class="flex flex-col items-center gap-4 p-4">
     <div v-if="!showMore" class="flex h-full max-w-275 flex-col items-center gap-4 px-4">
@@ -86,3 +54,35 @@ onMounted(async () => {
     </button>
   </div>
 </template>
+
+<script setup lang="ts">
+import { useScroll } from '@vueuse/core'
+import { storeToRefs } from 'pinia'
+import { ref, computed, onMounted, watch } from 'vue'
+import { useRouter } from 'vue-router'
+
+import SimpleArtistCard from '@/components/artists/SimpleArtistCard.vue'
+import TopArtistCard from '@/components/artists/TopArtistCard.vue'
+import { useiTunesStore } from '@/stores/useiTunesStore'
+
+const store = useiTunesStore()
+const router = useRouter()
+
+const showMore = ref(false)
+
+const { artistsLibrary, isYearlyActive } = storeToRefs(store)
+const artists = computed(() => artistsLibrary.value.data)
+
+const scrollContainer = ref<HTMLElement | null>(null)
+const scrollElement = useScroll(scrollContainer)
+
+watch(isYearlyActive, async (newValue, oldValue) => {
+  if (newValue !== oldValue) {
+    await store.fetchArtists()
+  }
+})
+
+onMounted(async () => {
+  await store.fetchArtists()
+})
+</script>
