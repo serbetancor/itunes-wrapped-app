@@ -23,7 +23,7 @@ const randomAngle = ref(getRandomAngle())
     class="relative flex cursor-pointer flex-col items-center rounded-2xl p-1 drop-shadow-xl transition-all duration-300 hover:scale-102"
   >
     <div
-      class="from-blue via-purple to-pink absolute inset-0 z-0 rounded-2xl bg-gradient-to-r p-[2px]"
+      class="from-blue via-purple to-pink absolute inset-0 z-0 rounded-2xl bg-linear-to-r p-0.5"
       :style="`background: linear-gradient(${randomAngle}deg, var(--color-blue), var(--color-purple), var(--color-pink));`"
     >
       <div class="h-full w-full rounded-2xl bg-white/90 dark:bg-zinc-800"></div>

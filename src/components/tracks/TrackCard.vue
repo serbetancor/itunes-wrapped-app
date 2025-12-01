@@ -22,7 +22,7 @@ const randomAngle = ref(getRandomAngle())
     <span v-if="index" class="w-6 text-center">{{ index }}</span>
     <div class="relative flex w-full flex-col items-center gap-2 transition-all hover:scale-102">
       <div
-        class="from-blue via-purple to-pink absolute inset-0 z-0 rounded-2xl bg-gradient-to-r p-[2px]"
+        class="from-blue via-purple to-pink absolute inset-0 z-0 rounded-2xl bg-linear-to-r p-0.5"
         :style="`background: linear-gradient(${randomAngle}deg, var(--color-blue), var(--color-purple), var(--color-pink));`"
       >
         <div class="h-full w-full rounded-2xl bg-white/90 dark:bg-zinc-800"></div>
@@ -41,7 +41,7 @@ const randomAngle = ref(getRandomAngle())
         />
         <span
           v-if="timePlayed"
-          class="from-blue via-purple to-pink ml-auto min-w-fit bg-gradient-to-r bg-clip-text text-right font-bold text-transparent"
+          class="from-blue via-purple to-pink ml-auto min-w-fit bg-linear-to-r bg-clip-text text-right font-bold text-transparent"
           :style="`background: linear-gradient(${randomAngle}deg, var(--color-blue), var(--color-purple), var(--color-pink)); -webkit-background-clip: text;`"
         >
           {{ formatMilliseconds(track.timePlayed) }}

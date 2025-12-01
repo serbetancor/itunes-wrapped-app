@@ -58,7 +58,7 @@ const triggerGlitch = () => {
         class="text-2xl transition-all duration-300 ease-out"
         :class="{
           'animate-glitch': isGlitching,
-          'scale-110 bg-gradient-to-r from-pink-400 to-purple-400 bg-clip-text text-transparent drop-shadow-[0_0_10px_rgba(255,0,255,0.8)]':
+          'scale-110 bg-linear-to-r from-pink-400 to-purple-400 bg-clip-text text-transparent drop-shadow-[0_0_10px_rgba(255,0,255,0.8)]':
             isYearlyActive,
         }"
       >
@@ -83,7 +83,7 @@ const triggerGlitch = () => {
         <span>{{ topic }}</span>
       </button>
     </div>
-    <div class="flex w-full flex-grow justify-center">
+    <div class="flex w-full grow justify-center">
       <router-view class="w-full" />
     </div>
   </div>
