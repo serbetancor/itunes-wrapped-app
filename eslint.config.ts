@@ -46,7 +46,7 @@ export default defineConfigWithVueTs(
         },
       ],
       'sort-keys-fix/sort-keys-fix': 'warn',
-      'vue/component-tags-order': [
+      'vue/block-order': [
         'error',
         {
           order: ['script', 'template', 'style'],
