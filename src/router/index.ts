@@ -34,6 +34,11 @@ const routes: Array<RouteRecordRaw> = [
     name: 'genres',
     path: '/genres',
   },
+  {
+    component: async () => import('@/views/WrappedView.vue') as RouteComponent,
+    name: 'wrapped',
+    path: '/wrapped',
+  },
 ]
 
 let instance: Router
