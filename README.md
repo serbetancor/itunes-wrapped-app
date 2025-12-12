@@ -1,38 +1,40 @@
-# itunes-wrapped-front
+# 🎵 iTunes Wrapped Frontend – Vue 3 + Vite
 
-This template should help get you started developing with Vue 3 in Vite.
+A private iTunes Wrapped frontend application built with **Vue 3** and **Vite**, providing a personalized view of your music listening habits throughout the year. Explore your tracks, artists, albums, genres, and a custom “Wrapped” summary view.
 
-## Recommended IDE Setup
+---
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+## Features
 
-## Type Support for `.vue` Imports in TS
+- **Personal Music Insights** – Visualize your yearly music activity by track, artist, album, and genre.
+- **Wrapped Summary View** – See highlights of your listening habits in a dedicated overview.
+- **Vue 3 + Vite Integration** – Modern frontend stack for fast, reactive development.
+- **TypeScript Support** – Uses `vue-tsc` for type checking of `.vue` files.
+- **Developer-Friendly** – ESLint setup included for consistent code quality.
 
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) to make the TypeScript language service aware of `.vue` types.
+---
 
-## Customize configuration
+## Getting Started
 
-See [Vite Configuration Reference](https://vite.dev/config/).
+1. **Install dependencies:**
 
-## Project Setup
-
-```sh
+```bash
 npm install
 ```
 
-### Compile and Hot-Reload for Development
+### Run in development mode with hot-reload:
 
 ```sh
 npm run dev
 ```
 
-### Type-Check, Compile and Minify for Production
+### Build for production:
 
 ```sh
 npm run build
 ```
 
-### Lint with [ESLint](https://eslint.org/)
+### Lint the codebase:
 
 ```sh
 npm run lint
