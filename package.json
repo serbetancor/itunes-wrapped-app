@@ -9,7 +9,7 @@
     "preview": "vite preview",
     "build-only": "vite build",
     "type-check": "vue-tsc --build",
-    "lint": "eslint . --fix",
+    "lint": "tailwind-lint --auto --fix && eslint . --fix",
     "format": "prettier --write ."
   },
   "dependencies": {
@@ -42,6 +42,7 @@
     "postcss": "8.5.30",
     "prettier": "3.9.10",
     "prettier-plugin-tailwindcss": "0.8.1",
+    "tailwind-lint": "0.14.0",
     "typescript": "5.9.3",
     "vite": "7.3.7",
     "vite-svg-loader": "5.1.3",
