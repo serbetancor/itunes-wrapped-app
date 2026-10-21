@@ -2,6 +2,7 @@ import skipFormatting from '@vue/eslint-config-prettier/skip-formatting'
 import { defineConfigWithVueTs, vueTsConfigs } from '@vue/eslint-config-typescript'
 import simpleImportSort from 'eslint-plugin-simple-import-sort'
 import sortKeysFix from 'eslint-plugin-sort-keys-fix'
+import tailwindCanonicalClasses from 'eslint-plugin-tailwind-canonical-classes'
 import pluginVue from 'eslint-plugin-vue'
 
 // To allow more languages other than `ts` in `.vue` files, uncomment:
@@ -24,12 +25,19 @@ export default defineConfigWithVueTs(
     plugins: {
       'simple-import-sort': simpleImportSort,
       'sort-keys-fix': sortKeysFix,
+      'tailwind-canonical-classes': tailwindCanonicalClasses,
       vue: pluginVue,
     },
     rules: {
       'simple-import-sort/exports': 'error',
       'simple-import-sort/imports': 'error',
       'sort-keys-fix/sort-keys-fix': 'warn',
+      'tailwind-canonical-classes/tailwind-canonical-classes': [
+        'warn',
+        {
+          cssPath: './src/index.css',
+        },
+      ],
       'vue/block-order': [
         'error',
         {
