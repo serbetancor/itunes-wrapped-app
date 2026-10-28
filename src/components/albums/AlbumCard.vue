@@ -20,9 +20,8 @@
 <script setup lang="ts">
 import { type PropType } from 'vue'
 
-import type { Album } from '@/models/itunes'
-
 import PositionsGained from '@/components/PositionsGained.vue'
+import type { Album } from '@/models/itunes'
 import { formatMilliseconds } from '@/utils/itunes'
 
 defineProps({

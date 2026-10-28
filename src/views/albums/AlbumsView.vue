@@ -26,7 +26,7 @@
 <script setup lang="ts">
 import { useScroll } from '@vueuse/core'
 import { storeToRefs } from 'pinia'
-import { ref, computed, onMounted, watch } from 'vue'
+import { computed, onMounted, ref, watch } from 'vue'
 
 import AlbumCollection from '@/components/albums/AlbumCollection.vue'
 import { useiTunesStore } from '@/stores/useiTunesStore'

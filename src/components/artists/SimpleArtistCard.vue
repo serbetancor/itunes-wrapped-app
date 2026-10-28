@@ -22,10 +22,9 @@
 <script setup lang="ts">
 import { type PropType, ref } from 'vue'
 
-import type { Artist } from '@/models/itunes'
-
 import ImagePosition from '@/components/ImagePosition.vue'
 import PositionsGained from '@/components/PositionsGained.vue'
+import type { Artist } from '@/models/itunes'
 import { getRandomAngle } from '@/utils/itunes'
 import { formatMilliseconds } from '@/utils/itunes'
 

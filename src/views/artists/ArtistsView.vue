@@ -10,7 +10,13 @@
             albumNumber: 4,
             class: 'desktop:w-1/2 h-150 desktop:mt-10',
           },
-          { start: 2, end: 5, top: false, class: 'desktop:w-1/3 desktop:my-auto h-100' },
+          {
+            start: 2,
+            end: 5,
+            top: false,
+            albumNumber: undefined,
+            class: 'desktop:w-1/3 desktop:my-auto h-100',
+          },
         ]"
         :key="rangeIndex"
         class="desktop:flex-row flex flex-col gap-4"
@@ -58,7 +64,7 @@
 <script setup lang="ts">
 import { useScroll } from '@vueuse/core'
 import { storeToRefs } from 'pinia'
-import { ref, computed, onMounted, watch } from 'vue'
+import { computed, onMounted, ref, watch } from 'vue'
 import { useRouter } from 'vue-router'
 
 import SimpleArtistCard from '@/components/artists/SimpleArtistCard.vue'

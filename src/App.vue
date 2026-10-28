@@ -44,7 +44,7 @@
 
 <script setup lang="ts">
 import { useDebounceFn } from '@vueuse/core'
-import { ref, onMounted } from 'vue'
+import { onMounted, ref } from 'vue'
 
 import { getRouter } from '@/router'
 import { useiTunesStore } from '@/stores/useiTunesStore'

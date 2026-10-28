@@ -1,14 +1,13 @@
 import { defineStore } from 'pinia'
 import { ref } from 'vue'
 
+import { useiTunesApi } from '@/apis/use-itunes-api'
 import type {
   AlbumsResponse,
   ArtistsResponse,
   GenresResponse,
   TracksResponse,
 } from '@/models/itunes'
-
-import { useiTunesApi } from '@/apis/use-itunes-api'
 
 export const useiTunesStore = defineStore('iTunes', () => {
   const albumsLibrary = ref<AlbumsResponse>({ data: [] })

@@ -38,11 +38,10 @@
 import { storeToRefs } from 'pinia'
 import { onMounted, ref, watch } from 'vue'
 
-import type { Artist } from '@/models/itunes'
-
 import { useiTunesApi } from '@/apis/use-itunes-api'
 import ImagePosition from '@/components/ImagePosition.vue'
 import TrackCard from '@/components/tracks/TrackCard.vue'
+import type { Artist } from '@/models/itunes'
 import { useiTunesStore } from '@/stores/useiTunesStore'
 
 const props = defineProps({
