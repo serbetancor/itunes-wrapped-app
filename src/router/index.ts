@@ -1,6 +1,5 @@
-import { createRouter, createWebHistory } from 'vue-router'
-
 import type { RouteComponent, Router, RouteRecordRaw } from 'vue-router'
+import { createRouter, createWebHistory } from 'vue-router'
 
 const routes: Array<RouteRecordRaw> = [
   {

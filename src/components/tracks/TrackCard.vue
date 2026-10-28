@@ -33,12 +33,11 @@
 </template>
 
 <script setup lang="ts">
-import { ref, type PropType } from 'vue'
-
-import type { Track } from '@/models/itunes'
+import { type PropType, ref } from 'vue'
 
 import ImagePosition from '@/components/ImagePosition.vue'
 import PositionsGained from '@/components/PositionsGained.vue'
+import type { Track } from '@/models/itunes'
 import { formatMilliseconds } from '@/utils/itunes'
 import { getRandomAngle } from '@/utils/itunes'
 

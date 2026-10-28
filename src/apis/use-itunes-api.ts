@@ -1,11 +1,10 @@
+import { buildUrl, createApiFetch } from '@/apis/request'
 import type {
   AlbumsResponse,
   ArtistsResponse,
   GenresResponse,
   TracksResponse,
 } from '@/models/itunes'
-
-import { buildUrl, createApiFetch } from '@/apis/request'
 import { useiTunesStore } from '@/stores/useiTunesStore'
 
 type Endpoint = 'albums' | 'artists' | 'genres' | 'tracks'

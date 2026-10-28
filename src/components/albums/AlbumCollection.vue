@@ -7,9 +7,8 @@
 <script setup lang="ts">
 import { type PropType } from 'vue'
 
-import type { Album } from '@/models/itunes'
-
 import AlbumCard from '@/components/albums/AlbumCard.vue'
+import type { Album } from '@/models/itunes'
 
 defineProps({
   albums: { required: true, type: Object as PropType<Album[]> },

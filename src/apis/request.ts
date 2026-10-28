@@ -1,6 +1,5 @@
-import { createFetch } from '@vueuse/core'
-
 import type { useFetch, UseFetchOptions } from '@vueuse/core'
+import { createFetch } from '@vueuse/core'
 
 export function createApiFetch(baseUrl: string, options: UseFetchOptions = {}): typeof useFetch {
   return createFetch({
